@@ -57,7 +57,7 @@
            o)
          (if (nil? (:result r))
            "nil"
-           (with-out-str (prn (:result r))))
+           (prn-str (:result r)))
          "```")
     (str "```"
          ";; " user "\n"
