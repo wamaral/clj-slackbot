@@ -56,7 +56,7 @@
            o)
          (if (nil? (:result r))
            "nil"
-           (:result (with-out-str (prn r))))
+           (with-out-str (prn (:result r))))
          "```")
     (str "```"
          "==> " (or (:form r) (:input r)) "\n"
