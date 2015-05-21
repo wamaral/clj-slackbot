@@ -48,9 +48,10 @@
        :input s
        :result (.getMessage e)})))
 
-(defn format-result [r]
+(defn format-result [r user]
   (if (:status r)
     (str "```"
+         ";; " user "\n"
          "=> " (:form r) "\n"
          (when-let [o (:output r)]
            o)
@@ -59,14 +60,15 @@
            (with-out-str (prn (:result r))))
          "```")
     (str "```"
+         ";; " user "\n"
          "==> " (or (:form r) (:input r)) "\n"
          (or (:result r) "Unknown Error")
          "```")))
 
-(defn eval-and-post [s channel]
+(defn eval-and-post [s user channel]
   (-> s
       eval-expr
-      format-result
+      (format-result user)
       (post-to-slack channel)))
 
 (defn handle-clj [params]
@@ -76,7 +78,7 @@
                     "directmessage" (str "@" (:user_name params))
                     "privategroup" (:channel_id params)
                     (str "#" (:channel_name params)))]
-      (eval-and-post (:text params) channel)
+      (eval-and-post (:text params) (:user_name params) channel)
       {:status 200
        :body ""
        :headers {"Content-Type" "text/plain"}})))
