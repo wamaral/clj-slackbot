@@ -12,7 +12,7 @@
   (:gen-class))
 
 (def clj-slackbot-tester
-  (conj secure-tester-without-def (blanket "clj-slackbot" "compojure" "ring")))
+  (conj secure-tester-without-def (blanket "clj-slackbot.core" "compojure" "ring")))
 
 (def sb (sandbox clj-slackbot-tester))
 
