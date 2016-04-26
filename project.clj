@@ -14,6 +14,7 @@
   :ring {:handler clj-slackbot.core.handler/app}
   :uberjar-name "clj-slackbot.jar"
   :main clj-slackbot.core.handler
+  :jvm-opts ["-Djava.security.manager" "-Djava.security.policy=.java.policy"]
   :profiles
   {:dev {:repl-options {:init-ns clj-slackbot.core.handler}
          :dependencies [[javax.servlet/servlet-api "2.5"]
