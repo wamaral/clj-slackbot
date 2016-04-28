@@ -3,20 +3,18 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/core.async "0.2.374"]
+                 [slack-rtm "0.1.2"]
                  [compojure "1.5.0"]
                  [clojail "1.0.6"]
                  [clj-http "3.0.1"]
                  [cheshire "5.6.1"]
-                 [environ "1.0.2"]
-                 [ring/ring-jetty-adapter "1.4.0"]
-                 [ring/ring-defaults "0.2.0"]]
-  :plugins [[lein-ring "0.9.7"]]
-  :ring {:handler clj-slackbot.core.handler/app}
+                 [environ "1.0.2"]]
   :uberjar-name "clj-slackbot.jar"
-  :main clj-slackbot.core.handler
+  :main clj-slackbot.core
   :jvm-opts ["-Djava.security.manager" "-Djava.security.policy=.java.policy"]
   :profiles
-  {:dev {:repl-options {:init-ns clj-slackbot.core.handler}
+  {:dev {:repl-options {:init-ns clj-slackbot.core}
          :dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}
    :uberjar {:aot :all}})
