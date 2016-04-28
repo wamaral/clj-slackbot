@@ -10,7 +10,7 @@
   (:gen-class))
 
 (def cmd-prefix (or (:bot-prefix env) "!"))
-(def cmd-regex (re-pattern (str "^(" cmd-prefix ")(\\w+)(?:\\s+(.*))?")))
+(def cmd-regex (re-pattern (str "^(?ius)(" cmd-prefix ")(\\w+)(?:\\s+(.*))?")))
 (def bot-name (or (:bot-name env) "ClojureBot"))
 (def bot-icon (or (:bot-icon env) "http://lorempixel.com/48/48"))
 
