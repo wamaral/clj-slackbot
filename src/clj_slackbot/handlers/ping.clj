@@ -8,6 +8,5 @@
 (go-loop []
   (let [message (<! ping-chan)
         writer (:out message)]
-    (prn "ponging" message)
     (writer "Pong!")
     (recur)))
