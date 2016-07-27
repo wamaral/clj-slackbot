@@ -5,7 +5,6 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.async "0.2.385"]
                  [slack-rtm "0.1.3"]
-                 [compojure "1.5.0"]
                  [clojail "1.0.6"]
                  [clj-http "3.1.0"]
                  [cheshire "5.6.1"]
