@@ -3,11 +3,11 @@
   :url "http://example.com/FIXME"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/core.async "0.2.374"]
-                 [slack-rtm "0.1.2"]
+                 [org.clojure/core.async "0.2.385"]
+                 [slack-rtm "0.1.3"]
                  [compojure "1.5.0"]
                  [clojail "1.0.6"]
-                 [clj-http "3.0.1"]
+                 [clj-http "3.1.0"]
                  [cheshire "5.6.1"]
                  [environ "1.0.2"]]
   :uberjar-name "clj-slackbot.jar"

@@ -5,6 +5,7 @@
             [clj-slackbot.channels :refer [get-chan]]
             [clj-slackbot.handlers.connection :as conn]
             [clj-slackbot.load-handlers]
+            [clj-http.client :as http]
             [clojure.core.async :as async :refer [>! <! go go-loop]])
   (:import java.lang.Thread)
   (:gen-class))
@@ -19,10 +20,22 @@
     (let [payload {:channel (:channel original)
                    :type "message"
                    :text text
-                   :as_user true
+                   :as_user false
                    :username bot-name
                    :icon_url bot-icon}]
       (slack/send-event out-chan payload))))
+
+(defn message-writer-http [original out-chan]
+  (fn [text]
+    (let [payload {:token (:slack-api-token env)
+                   :channel (:channel original)
+                   :text text
+                   :as_user false
+                   :unfurl_links true
+                   :unfurl_media true
+                   :username bot-name
+                   :icon_url bot-icon}]
+      (http/get "https://slack.com/api/chat.postMessage" {:query-params payload}))))
 
 (defn parse-message [message]
   (let [contents (:text message)
@@ -37,7 +50,7 @@
   (if-let [parsed-message (parse-message message)]
     (go (>! (get-chan :parsed-message-in)
             (merge parsed-message
-                   {:out (message-writer message out-chan)})))))
+                   {:out (message-writer-http message out-chan)})))))
 
 (defn -main [& args]
   (let [conn (slack/connect (:slack-api-token env)
