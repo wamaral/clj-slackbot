@@ -11,9 +11,9 @@
 
 (def shortcut
   {:bioidprod "https://login.bio/version"
-   :bioidbeta "https://login.stage.cloud.bionexo.com.br/version"
+   :bioidqa "http://bioid.qa.cloud.bionexo.com.br/version"
    :regeneprod "https://platform.bio/version"
-   :regenebeta "https://platform.stage.cloud.bionexo.com.br/version"})
+   :regeneqa "http://qaregene.bionexo.com.br/version"})
 
 (defn parse-url [url]
   (let [sanitized (s/replace url #"[<>]" "")
