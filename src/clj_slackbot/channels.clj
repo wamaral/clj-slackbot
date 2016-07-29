@@ -1,10 +1,10 @@
 (ns clj-slackbot.channels
-  (:require [clojure.core.async :refer [chan pub]]))
+  (:require [clojure.core.async :refer [chan pub sliding-buffer]]))
 
 (def global-chans
   (memoize (fn []
-             {:slack-message-in (chan)
-              :parsed-message-in (chan)})))
+             {:slack-message-in (chan (sliding-buffer 1))
+              :parsed-message-in (chan (sliding-buffer 1))})))
 
 (defn get-chan [key]
   (get (global-chans) key))
